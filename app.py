@@ -4,8 +4,6 @@ import numpy as np
 import pickle
 import streamlit as st
 from PIL import Image
-import matplotlib.pyplot as plt
-from gensim.models.keyedvectors import KeyedVectors
 
 image = Image.open('images/love_wall.jpeg')
 st.image(image, width=480)
@@ -69,36 +67,6 @@ st.title("Hate speech via tweet Classifier")
 input_tweet = st.text_area("Enter the tweet")
 
 
-
-# def plot_class_distribution(labels):
-#     """Plot a bar chart showing the class distribution of the labels."""
-#     # Count the number of hate speech and non-hate speech labels
-#     hate_speech_count = sum(labels)
-#     non_hate_speech_count = len(labels) - hate_speech_count
-#
-#     # Set up the plot
-#     fig, ax = plt.subplots()
-#     index = np.arange(2)
-#     bar_width = 0.35
-#     opacity = 0.8
-#
-#     # Plot the bar chart
-#     rects1 = plt.bar(index, (hate_speech_count, non_hate_speech_count), bar_width,
-#                      alpha=opacity,
-#                      color='b',
-#                      label='Classes')
-#
-#     plt.xlabel('Class')
-#     plt.ylabel('Count')
-#     plt.title('Class Distribution')
-#     plt.xticks(index, ('Hate Speech', 'Non-Hate Speech'))
-#     plt.legend()
-#
-#     plt.tight_layout()
-#     plt.show()
-
-
-
 if st.button('Predict'):
     # 1. preprocess
     transformed_tweet = transform_text(input_tweet)
@@ -111,15 +79,6 @@ if st.button('Predict'):
         st.header("This tweet appears to have hate speech")
     else:
         st.header("This tweet does not appear to have hate speech")
-
-
-# # Add a button to display the class distribution plot
-# if st.button("Show Class Distribution"):
-#     # Classify the tweets
-#     labels = classify_tweets(tweets, model, vectorizer, 200)
-#
-#     # Plot the class distribution
-#     plot_class_distribution(labels)
 
 st.markdown(
 """
